@@ -4,7 +4,7 @@
 
 body {
 	text-align: center;
-	background-color: #F0F6F7FF;
+	background-color: #555a60; /*#F0F6F7FF;*/
 	/*#f2bf7d*/
 	/*#F1F4FFFF*/
 }
@@ -12,13 +12,15 @@ body {
 .container-home {
 	display: inline-block;
 	text-align: center;
+	margin-top: 25vh;
 }
 
 #website-name {
 	font-family: 'Allura', cursive;
-	font-size: 450%;
-	color: #669DB3FF;
-	/*#555a60*/
+	font-size: 475%;
+	color: #f2bf7d;
+	/*#669DB3FF*/
+	margin-bottom: 5%;
 }
 .container-home input[type=text] {
 	padding: 10px 15px;
@@ -26,7 +28,7 @@ body {
 	/*border: 2px solid #eee;*/
 	border: 0;
 	border-radius: 10px;
-	width: 100%;
+	width: 80%;
 	vertical-align: top;
 }
 .container-home input[type=text]::placeholder {
@@ -36,9 +38,26 @@ body {
 	height: 150px;
 }
 #poet-input {
-	height: 45px;
+	height: 45px;container
 }
 .container-home input, textarea {
   font-family:inherit;
   font-size: inherit;
+}
+
+.container-home button {
+	width: 25%;
+	font-size: 20px;
+	padding: 8px 0px;
+	border-radius: 5px;
+	background-color: #f2bf7d; 
+	color: #555a60;
+	border: none;
+}
+
+#search {
+	margin: 25px 20px 0px 0px;
+}
+#add {
+	margin: 25px 0 0 20px;
 }

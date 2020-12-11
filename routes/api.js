@@ -9,7 +9,22 @@ router.get('/poems', function(request, response, next){
     });*/
     // 
     // request.query.poet
+    Poem.find().then(function(poem){
+        console.log(poem);
+        response.send(poem);
+    });
 });
+
+// substring search given name of poet
+router.get('/poems/:poet_name', function(request, response, next){
+    console.log("reg test");
+    console.log(request.params.poet_name);
+    Poem.find({poet: { '$regex' : request.params.poet_name, '$options' : 'i' }}).then(function(poem){
+        console.log(poem);
+        response.send(poem);
+    });
+});
+
 
 // add poem to db
 router.post('/poems', function(request, response, next){

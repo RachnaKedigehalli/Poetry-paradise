@@ -15,6 +15,15 @@ app.use(express.static('public'));
 // parse body and attach to request
 app.use(bodyParser.json());
 
+// CORS fix
+app.use((req, res, next) => {
+    
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Access-Control-Allow-Headers, X-Requested-With');
+    res.header('Access-Control-Allow-Methods', ' GET, POST, OPTIONS, PUT, DELETE');
+    res.header('Access-Control-Allow-Origin', '*');
+    next();
+});
+
 // initializes routes
 app.use('/api', require('./routes/api'));
 
