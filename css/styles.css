@@ -1,3 +1,44 @@
 * {
     box-sizing: border-box;
 }
+
+body {
+	text-align: center;
+	background-color: #F0F6F7FF;
+	/*#f2bf7d*/
+	/*#F1F4FFFF*/
+}
+
+.container-home {
+	display: inline-block;
+	text-align: center;
+}
+
+#website-name {
+	font-family: 'Allura', cursive;
+	font-size: 450%;
+	color: #669DB3FF;
+	/*#555a60*/
+}
+.container-home input[type=text] {
+	padding: 10px 15px;
+	margin:10px 0;
+	/*border: 2px solid #eee;*/
+	border: 0;
+	border-radius: 10px;
+	width: 100%;
+	vertical-align: top;
+}
+.container-home input[type=text]::placeholder {
+	vertical-align: top;
+}
+#verse-input {
+	height: 150px;
+}
+#poet-input {
+	height: 45px;
+}
+.container-home input, textarea {
+  font-family:inherit;
+  font-size: inherit;
+}
