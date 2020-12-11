@@ -34,14 +34,17 @@ body {
 .container-home input[type=text]::placeholder {
 	vertical-align: top;
 }
+#title-input {
+	height: 45px;
+}
 #verse-input {
 	height: 150px;
 }
 #poet-input {
-	height: 45px;container
+	height: 45px;
 }
 .container-home input, textarea {
-  font-family:inherit;
+  font-family: inherit;
   font-size: inherit;
 }
 

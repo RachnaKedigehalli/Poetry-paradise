@@ -19,6 +19,10 @@ const InterpretationSchema = new Schema({
 
 // create poem Schema and model
 const PoemSchema = new Schema({
+    title: {
+        type: String,
+        default: "Unknown"
+    },
     verse: {
         type: String,
         required: [true, 'Verse field is required']
@@ -29,6 +33,12 @@ const PoemSchema = new Schema({
     },
     interpretations: {
         type: [InterpretationSchema]
+    },
+    datePosted: {
+        type: Date
+    },
+    postedBy: {
+        type: String
     }
 });
 
