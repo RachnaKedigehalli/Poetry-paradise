@@ -33,6 +33,7 @@ router.post('/poems', function(request, response, next){
 
     // create Poem object and saves it to db
     Poem.create(request.body).then(function(poem){      // returns a promise; "poem" is the data saved in db
+        console.log(poem);
         response.send(poem);
     }).catch(next);     // goes to next middleware(in this case, error handling middleware)
 });
