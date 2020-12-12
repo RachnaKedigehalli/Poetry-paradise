@@ -15,8 +15,15 @@ router.get('/poems', function(request, response, next){
     });
 });
 
+// search based on _id
+router.get('/poems/:id', function(request, response, next){
+    Poem.findOne({_id: request.params.id}).then(function(poem){
+        response.send(poem);
+    });
+});
+
 // substring search given name of poet
-router.get('/poems/:poet_name', function(request, response, next){
+router.get('/poet/:poet_name', function(request, response, next){
     console.log("reg test");
     console.log(request.params.poet_name);
     Poem.find({poet: { '$regex' : request.params.poet_name, '$options' : 'i' }}).then(function(poem){
@@ -33,7 +40,7 @@ router.post('/poems', function(request, response, next){
 
     // create Poem object and saves it to db
     Poem.create(request.body).then(function(poem){      // returns a promise; "poem" is the data saved in db
-        console.log(poem);
+        // console.log(poem);
         response.send(poem);
     }).catch(next);     // goes to next middleware(in this case, error handling middleware)
 });
