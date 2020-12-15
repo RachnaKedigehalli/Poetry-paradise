@@ -66,7 +66,7 @@ nav {
 	background-color: #ffffff;
 	border: 1px solid #555a60;
 	min-height: 30px;
-	font-size: 25px;
+	font-size: 23px;
 	margin: 10px 2px;
 	padding: 5px;
 	position: relative;
@@ -81,4 +81,22 @@ nav {
 	position: absolute;
 	right: 5px;
 	bottom: 5px;
+}
+#enter-interpretation {
+	
+}
+#enter-interpretation-text {
+	padding: 10px 15px;
+	margin: 20px 5px 0 0;
+	border: 2px solid #000000;
+	/* border: 0; */
+	border-radius: 10px;
+	width: 85%;
+	height: 100px;
+	vertical-align: top;
+}
+
+#submit-button {
+	margin: 20px 0 0 5px;
+	width: 11%;
 }

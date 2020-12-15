@@ -1,5 +1,7 @@
 
-window.onload = function() {
+window.onload = displayPoem;
+
+function displayPoem() {
     console.log("testt");
     var url = new URL(window.location.href);
     var poem_id = url.searchParams.get('poem_id');
@@ -20,11 +22,10 @@ window.onload = function() {
             document.getElementById("poem-date").innerText = "Posted on " + d.getDate() + "-" + d.getMonth() + "-" + d.getFullYear() + " at " + d.getHours() + ":" + d.getMinutes();
 
             var itps = poem.interpretations;
-            var template = `<div class="interpretation">
-                                <div class="itp-text"></div>
-                                <div class="itp-details"></div>
-                            </div>`;
-            
+            document.getElementById("interpretations").innerHTML = '';
+            if(itps.length == 0) {
+                document.getElementById("interpretations").innerText = "There are no interpretations for this poem yet. Be the first one to add one!";
+            }
             for(var i=0; i<itps.length; i++) {
                 d = new Date(itps[i].date);
                 document.getElementById("interpretations").innerHTML += `<div class="interpretation">
