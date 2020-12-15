@@ -19,10 +19,20 @@ window.onload = function() {
             var d = new Date(poem.datePosted);
             document.getElementById("poem-date").innerText = "Posted on " + d.getDate() + "-" + d.getMonth() + "-" + d.getFullYear() + " at " + d.getHours() + ":" + d.getMinutes();
 
-            var itps = ``;
-            var arr = 0;
-            for(var i=0; i<poem.interpretations.length; i++) {
-                
+            var itps = poem.interpretations;
+            var template = `<div class="interpretation">
+                                <div class="itp-text"></div>
+                                <div class="itp-details"></div>
+                            </div>`;
+            
+            for(var i=0; i<itps.length; i++) {
+                d = new Date(itps[i].date);
+                document.getElementById("interpretations").innerHTML += `<div class="interpretation">
+                                        <div class="itp-text">` + itps[i].interpretation + `</div>` +
+                                        `<div class="itp-details">` + "Posted on " + d.getDate() + "-" + d.getMonth() + "-" + d.getFullYear() + 
+                                        " at " + d.getHours() + ":" + d.getMinutes() + `</div>
+                                    </div>`;
+                // console.log(template.getElementsByClass("itp-text"));
             }
         }
     };
