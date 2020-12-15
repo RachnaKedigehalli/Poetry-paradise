@@ -7,6 +7,8 @@ const app = express();
 
 // connect to mongodb
 mongoose.connect('mongodb://localhost/poems', {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.set('useFindAndModify', false);    // deprecations fix
+mongoose.set('useCreateIndex', true);
 mongoose.Promise = global.Promise;
 
 // serve static files on request

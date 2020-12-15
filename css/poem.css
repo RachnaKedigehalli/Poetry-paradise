@@ -47,6 +47,7 @@ nav {
 	min-height: 30px;
 	font-size: 25px;
 	margin: 10px 2px;
+	padding: 5px;
 }
 #poem-date {
 	font-size: 15px;
@@ -54,4 +55,22 @@ nav {
 #interpretations-headings {
 	font-size: 35px;
 	margin-top: 20px;
+}
+
+#interpretations {
+
+}
+
+.interpretation {
+	border-radius: 5px;
+	background-color: #ffffff;
+	border: 1px solid #555a60;
+	min-height: 30px;
+	font-size: 25px;
+	margin: 10px 2px;
+	padding: 5px;
+}
+
+.itp-details {
+
 }

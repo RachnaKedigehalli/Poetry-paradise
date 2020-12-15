@@ -18,6 +18,12 @@ window.onload = function() {
             document.getElementById("verse").innerText = poem.verse;
             var d = new Date(poem.datePosted);
             document.getElementById("poem-date").innerText = "Posted on " + d.getDate() + "-" + d.getMonth() + "-" + d.getFullYear() + " at " + d.getHours() + ":" + d.getMinutes();
+
+            var itps = ``;
+            var arr = 0;
+            for(var i=0; i<poem.interpretations.length; i++) {
+                
+            }
         }
     };
     poemHTTP.open("GET", `http://localhost:4000/api/poems/${poem_id}`, true);

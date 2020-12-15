@@ -1,21 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-
-// create interpretation Schema
-const InterpretationSchema = new Schema({
-    interpretation: {
-        type: String,
-        required: [true, 'Interpretation field is required']
-    },
-    author: {
-        type: String,
-        default: "Anonymous"
-    },
-    date: {
-        type: Date
-    }
-});
-
+const InterpretationSchema = require('./interpretation.js');
 
 // create poem Schema and model
 const PoemSchema = new Schema({

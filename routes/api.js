@@ -1,6 +1,9 @@
 const express = require('express');
 const router = express.Router();
+const mongoose = require('mongoose');
+
 const Poem = require('../models/poem.js');
+const Interpretation = require('../models/interpretation.js');
 
 function inArray(poem, poems) {
     for(var i=0; i<poems.length; i++) {
@@ -95,6 +98,7 @@ router.get('/poems/:id', function(request, response, next){
     });
 });
 
+//-------------------------------------------------
 // substring search given name of poet
 router.get('/poems/:title/:verse/:poet_name', function(request, response, next){
     console.log("reg test");
@@ -131,7 +135,7 @@ router.get('/poems/verse/:verse', function(request, response, next){
         response.send(poem);
     });
 });
-
+//-------------------------------------------------
 
 // add poem to db
 router.post('/poems', function(request, response, next){
@@ -144,6 +148,26 @@ router.post('/poems', function(request, response, next){
         response.send(poem);
     }).catch(next);     // goes to next middleware(in this case, error handling middleware)
 });
+
+// add interpretation to poem db
+router.put('/poems/interpretations/:id', function(request, response, next){
+    Poem.findOne({_id: request.params.id}).then(function(poem){
+        const Itp = mongoose.model('interpretation', Interpretation);
+        // console.log("Request body\n" + request.body);
+        var itp = new Itp(request.body);
+        // console.log("\nitp object \n"+ itp);
+        var newObj = {};
+        newObj.interpretations = poem.interpretations.concat(itp);
+        // console.log("\nPoem\n"+poem);
+        Poem.findByIdAndUpdate({_id: request.params.id}, newObj).then(function(){
+            Poem.findOne({_id: request.params.id}).then(function(poem){
+                console.log("\nPoem\n"+poem);
+                response.send(poem);
+            });
+        });
+    });
+});
+
 
 // update poem details in db
 router.put('/poems/:id', function(request, response, next){
