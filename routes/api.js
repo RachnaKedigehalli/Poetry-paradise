@@ -13,7 +13,16 @@ function inArray(poem, poems) {
 }
 
 router.get('/poems', function(request, response, next){
-    Poem.find({$or: [{title: { '$regex' : request.query.title, '$options' : 'i' }}, {verse: { '$regex' : request.query.verse, '$options' : 'i' }}, {poet: { '$regex' : request.query.poet, '$options' : 'i' }}]}).then(function(poem){
+    console.log(request.query.title + '-'+request.query.verse + '-' + request.query.poet);
+    console.log(request.query.verse=='');
+    // console.log(request.query.poet);
+
+    // Poem.find({$or: [{title: { '$regex' : request.query.title, '$options' : 'i' }}, {verse: { '$regex' : request.query.verse, '$options' : 'i' }}, {poet: { '$regex' : request.query.poet, '$options' : 'i' }}]}).then(function(poem){
+    //     response.send(poem);
+    // });
+    Poem.find({$or: [{$and: [{title: { '$regex' : request.query.title, '$options' : 'i' }},{title: {$not: { '$regex': "" }}}]},
+                {$and: [{verse: { '$regex' : request.query.verse, '$options' : 'i' }},{verse: {$not: { '$regex': "" }}}]},
+                {$and: [{poet: { '$regex' : request.query.poet, '$options' : 'i' }},{poet: {$not: { '$regex': "" }}}]}]}).then(function(poem){
         response.send(poem);
     });
 });

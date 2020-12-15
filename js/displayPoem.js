@@ -24,7 +24,7 @@ function displayPoem() {
             var itps = poem.interpretations;
             document.getElementById("interpretations").innerHTML = '';
             if(itps.length == 0) {
-                document.getElementById("interpretations").innerText = "There are no interpretations for this poem yet. Be the first one to add one!";
+                document.getElementById("interpretations").innerText = "There are no interpretations for this poem yet. Be the first to add one!";
             }
             for(var i=0; i<itps.length; i++) {
                 d = new Date(itps[i].date);
