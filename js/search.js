@@ -11,7 +11,9 @@ searchBtn.addEventListener("click", function(event) {
         if (this.readyState == 4 && this.status == 200) {
             var arr = JSON.parse(this.responseText);
             console.log(arr);
+            console.log(arr[0]==arr[2]);
             //---------------------------------------
+            /*
             const testForm = document.createElement('form');
             testForm.method = 'get';
             testForm.action = 'poem.html';
@@ -28,6 +30,7 @@ searchBtn.addEventListener("click", function(event) {
             
               document.body.appendChild(testForm);
               testForm.submit();
+              */
             //---------------------------------------
         }
     }
@@ -36,7 +39,10 @@ searchBtn.addEventListener("click", function(event) {
 
     // search only if there is text in either of the fields (title or verse or poet)
     if(title.value || verse.value || poet.value) {
-        http.open("GET", `http://localhost:4000/api/poems/${poet.value}`, true);
+        console.log(title.value);
+        console.log(verse.value);
+        console.log(poet.value);
+        http.open("GET", `http://localhost:4000/api/poems?title=${title.value}&verse=${verse.value}&poet=${poet.value}`, true);
         http.send();
         // console.log('sent');
     }

@@ -2,17 +2,90 @@ const express = require('express');
 const router = express.Router();
 const Poem = require('../models/poem.js');
 
-// get list of poems from db
+function inArray(poem, poems) {
+    for(var i=0; i<poems.length; i++) {
+        if(poem._id == poems[i]._id) return true;
+    }
+    return false;
+}
+
 router.get('/poems', function(request, response, next){
+    Poem.find({$or: [{title: { '$regex' : request.query.title, '$options' : 'i' }}, {verse: { '$regex' : request.query.verse, '$options' : 'i' }}, {poet: { '$regex' : request.query.poet, '$options' : 'i' }}]}).then(function(poem){
+        response.send(poem);
+    });
+});
+
+
+// get list of poems from db
+router.get('/poem', function(request, response, next){
     /*Poem.find({}).then(function(poems){
         response.send(poems);
     });*/
     // 
     // request.query.poet
-    Poem.find().then(function(poem){
-        console.log(poem);
-        response.send(poem);
-    });
+    var poems=[];
+
+    if(request.query.title) {
+        Poem.find({title: { '$regex' : request.query.title, '$options' : 'i' }}).then(function(poem){
+            console.log("\ntitle");
+            console.log(poem);
+            // poem.forEach(function(p){
+            //     console.log(p);
+            //     console.log(!p in poems);
+            //     if(poems.indexOf(p)==-1) {
+            //         poems = poems.concat(poem);
+            //         console.log(poems);
+            //     }
+            // });
+            if(!inArray(poem, poems)) poems = poems.concat(poem);
+            console.log(poems);
+        });
+    }
+    
+    if(request.query.verse) {
+        Poem.find({verse: { '$regex' : request.query.verse, '$options' : 'i' }}).then(function(poem){
+            console.log("\nverse");
+            console.log(poem);
+            // poem.forEach(function(p){
+            //     console.log(p);
+            //     console.log(!p in poems);
+            //     if(poems.indexOf(p)==-1) {
+            //         poems = poems.concat(poem);
+            //         console.log(poems);
+            //     }
+            // });
+            if(!inArray(poem, poems)) poems = poems.concat(poem);
+            console.log(poems);
+        });
+    }
+    
+    if(request.query.poet) {
+        Poem.find({poet: { '$regex' : request.query.poet, '$options' : 'i' }}).then(function(poem){
+            console.log("\npoet");
+            console.log(poem);
+            // poem.forEach(function(p){
+            //     console.log(p);
+            //     console.log(!p in poems);
+            //     if(poems.indexOf(p)==-1) {
+            //         poems = poems.concat(poem);
+            //         console.log(poems);
+            //     }
+            // });
+            if(!inArray(poem, poems)) poems = poems.concat(poem);
+            console.log(poems);
+
+            console.log("\n\nPoems---");
+            console.log(poems);
+            console.log("sending");
+            response.send(poems);
+            console.log("sent");
+        });
+    }
+    // console.log("Poems---");
+    // console.log(poems);
+    // console.log("sending");
+    // response.send(poems);
+    // console.log("sent");
 });
 
 // search based on _id
@@ -23,10 +96,37 @@ router.get('/poems/:id', function(request, response, next){
 });
 
 // substring search given name of poet
-router.get('/poet/:poet_name', function(request, response, next){
+router.get('/poems/:title/:verse/:poet_name', function(request, response, next){
     console.log("reg test");
+    console.log(request.url);
+    console.log(request.params.poet_name);
+    console.log(request.params.title);
+    Poem.find({poet: { '$regex' : request.params.poet_name, '$options' : 'i' }}).then(function(poem){
+        console.log(poem);
+        response.send(poem);
+    });
+});
+
+router.get('/poems/title/:title', function(request, response, next){
+    console.log(request.params.title);
+    Poem.find({title: { '$regex' : request.params.title, '$options' : 'i' }}).then(function(poem){
+        console.log("Title---------");
+        console.log(poem);
+        response.send(poem);
+    });
+});
+router.get('/poems/poet/:poet_name', function(request, response, next){
     console.log(request.params.poet_name);
     Poem.find({poet: { '$regex' : request.params.poet_name, '$options' : 'i' }}).then(function(poem){
+        console.log("Poet---------");
+        console.log(poem);
+        response.send(poem);
+    });
+});
+router.get('/poems/verse/:verse', function(request, response, next){
+    console.log(request.params.verse);
+    Poem.find({verse: { '$regex' : request.params.verse, '$options' : 'i' }}).then(function(poem){
+        console.log("Verse---------");
         console.log(poem);
         response.send(poem);
     });
