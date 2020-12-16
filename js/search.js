@@ -5,6 +5,8 @@ var poet = document.getElementById("poet-input");
 
 searchBtn.addEventListener("click", function(event) {
     // console.log('search clicked');
+    
+    /*
     var http = new XMLHttpRequest();
 
     http.onreadystatechange = function() {
@@ -12,26 +14,6 @@ searchBtn.addEventListener("click", function(event) {
             var arr = JSON.parse(this.responseText);
             console.log(arr);
             console.log(arr[0]==arr[2]);
-            //---------------------------------------
-            /*
-            const testForm = document.createElement('form');
-            testForm.method = 'get';
-            testForm.action = 'poem.html';
-            for (const key in arr) {
-                if (arr.hasOwnProperty(key)) {
-                  const hiddenField = document.createElement('input');
-                  hiddenField.type = 'hidden';
-                  hiddenField.name = key;
-                  hiddenField.value = arr[key];
-            
-                  testForm.appendChild(hiddenField);
-                }
-              }
-            
-              document.body.appendChild(testForm);
-              testForm.submit();
-              */
-            //---------------------------------------
         }
     }
     // console.log(verse.value);
@@ -45,5 +27,19 @@ searchBtn.addEventListener("click", function(event) {
         http.open("GET", `http://localhost:4000/api/poems?title=${title.value}&verse=${verse.value}&poet=${poet.value}`, true);
         http.send();
         // console.log('sent');
+    }
+    */
+
+    // search only if there is text in either of the fields (title or verse or poet)
+    if(title.value || verse.value || poet.value) {
+        var url = new URL(window.location.origin + "/public/search.html");
+        url.searchParams.append('title', title.value);
+        url.searchParams.append('verse', verse.value);
+        url.searchParams.append('poet', poet.value);
+        console.log(url);
+        window.location.href = url;
+    }
+    else {
+        alert("Enter field to search");
     }
 });

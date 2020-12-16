@@ -1,0 +1,23 @@
+#container {
+    width: 80%;
+}
+.result {
+    border-radius: 5px;
+	background-color: #ffffff;
+	border: 1px solid #555a60;
+	min-height: 30px;
+	font-size: 25px;
+	margin: 10px 2px;
+	padding: 5px;
+}
+.result-poem-title {
+    /* float: left; */
+    margin-right: 5px;
+}
+.result-poet {
+    font-size: 18px;
+}
+.result-verse {
+    /* clear: both; */
+    font-size: 22px;
+}
