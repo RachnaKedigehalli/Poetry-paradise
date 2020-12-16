@@ -7,78 +7,74 @@ const Interpretation = require('../models/interpretation.js');
 
 
 router.post('/poems/search', function(request, response, next){
-    console.log("Req body: "+request.body.verse);
-    var x = decodeURIComponent(request.query);
-    console.log(x);
-    console.log(Boolean(request.body.verse));
+    
+    var titleFind = async function(resArr) {
+        if(request.body.title) {
+            console.log("test");
+            Poem.find({title: { '$regex' : request.body.title, '$options' : 'i' }}).then(function(poem){
+                titleArr = Array.from(poem);
+                // console.log("\nTitle:\n");
+                // console.log(titleArr);
+                resArr = resArr.concat(titleArr);
+                verseFind(resArr);
+            });
+        }
+        else verseFind(resArr);
+        // return resArr;
+    };
+    var verseFind = async function(resArr) {
+        if(request.body.verse) {
+            Poem.find({verse: { '$regex' : request.body.verse, '$options' : 'i' }}).then(function(poem){
+                verseArr = Array.from(poem);
+                // console.log("\nverse:\n");
+                // console.log(verseArr);
+                resArr = resArr.concat(verseArr);
+                poetFind(resArr);
+            });
+        }
+        else poetFind(resArr);
+        // return resArr;
+    };
+    var poetFind = async function(resArr) {
+        if(request.body.poet) {
+            Poem.find({poet: { '$regex' : request.body.poet, '$options' : 'i' }}).then(function(poem){
+                poetArr = Array.from(poem);
+                // console.log("\nPoet:\n");
+                // console.log(poetArr);
+                resArr = resArr.concat(poetArr);
+
+                removeDuplicate(resArr);
+            });
+        }
+        else removeDuplicate(resArr);
+        // return resArr;
+    };
+
+    var removeDuplicate = function(resArr) {
+        // console.log("\nTitle:\n");
+        //     console.log(titleArr);
+        //     console.log("\nverse:\n");
+        //     console.log(verseArr);
+        //     console.log("\nPoet:\n");
+        //     console.log(poetArr);
+        for(var i=0; i<resArr.length; i++) {
+            for(var j=i+1; j<resArr.length; j++) {
+                var arr = [i,j,String(resArr[i]._id)==String(resArr[j]._id)];
+                console.log(arr);
+                if(String(resArr[i]._id)==String(resArr[j]._id)) {
+                    resArr.splice(j,1);
+                    j--;
+                }
+            }
+        }
+        // console.log(resArr+"---------------------------------------------------------------");
+        response.send(resArr);
+    };
     var titleArr = [];
     var verseArr = [];
     var poetArr = [];
-    if(request.body.title) {
-        Poem.find({title: { '$regex' : request.body.title, '$options' : 'i' }}).then(function(poem){
-            titleArr = Array.from(poem);
-        });
-    }
-    if(request.body.verse) {
-        Poem.find({verse: { '$regex' : request.body.verse, '$options' : 'i' }}).then(function(poem){
-            verseArr = Array.from(poem);
-        });
-    }
-    if(request.body.poet) {
-        Poem.find({poet: { '$regex' : request.body.poet, '$options' : 'i' }}).then(function(poem){
-            poetArr = Array.from(poem);
-
-            // console.log("\nTitle:\n");
-            // console.log(titleArr);
-            // console.log("\nverse:\n");
-            // console.log(verseArr);
-            // console.log("\nPoet:\n");
-            // console.log(poetArr);
-
-            // var resArr = Array.from(new Set(titleArr.concat(verseArr).concat(poetArr)));
-            var resArr = titleArr.concat(verseArr).concat(poetArr);
-            /*
-            resArr = resArr.filter(poem => {
-                resArr.forEach(element => {
-                    // console.log("\n------------------------------\n"+ poem + "\n------\n"+ element + "\n------------------------------\n");
-                    // console.log("\n------------------------------\n"+ resArr + "\n------------------------------\n");
-
-                    return poem._id != element._id;
-                });
-            });*/
-            /*
-            console.log(resArr);
-            console.log("------------");
-            const { Map, Set } = require('immutable');
-            var set = new Set();
-            for(var i=0; i<resArr.length; i++) {
-                set.add(Map(resArr[i]));
-                console.log("\n----" +i+"-----\n"+set);
-            }
-            // set = set.add(Map({a:1}));
-            // set = set.add(Map({a:1}));
-            console.log([...set.values()]); 
-            resArr = Array.from(set);
-            */
-
-            for(var i=0; i<resArr.length; i++) {
-                for(var j=i+1; j<resArr.length; j++) {
-                    var arr = [i,j,String(resArr[i]._id)==String(resArr[j]._id)];
-                    console.log(arr);
-                    if(String(resArr[i]._id)==String(resArr[j]._id)) {
-                        resArr.splice(j,1);
-                        j--;
-                    }
-                }
-            }
-            console.log(resArr);
-            // console.log(resArr[3]);
-            // console.log(resArr[4]);
-            // console.log(String(resArr[3]._id)==String(resArr[4]._id));
-            response.send(resArr);
-        });
-    }
-    
+    var resArr = [];
+    titleFind(resArr);
 });
 
 // search based on _id
