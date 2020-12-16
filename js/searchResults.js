@@ -36,7 +36,7 @@ function searchResults() {
     var title = url.searchParams.get("title");
     var verse = url.searchParams.get("verse");
     var poet = url.searchParams.get("poet");
-    http.open("Post", `http://localhost:4000/api/poems/search?title=${title}&verse=${verse}&poet=${poet}`, true);
+    http.open("POST", `http://localhost:4000/api/poems/search?title=${title}&verse=${verse}&poet=${poet}`, true);
     http.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     console.log(verse);
     var obj = {};
