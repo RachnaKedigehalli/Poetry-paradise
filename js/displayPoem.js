@@ -29,10 +29,11 @@ function displayPoem() {
             for(var i=0; i<itps.length; i++) {
                 d = new Date(itps[i].date);
                 document.getElementById("interpretations").innerHTML += `<div class="interpretation">
-                                        <div class="itp-text">` + itps[i].interpretation + `</div>` +
+                                        <div class="itp-text"></div>` +
                                         `<div class="itp-details">` + "Posted on " + d.getDate() + "-" + d.getMonth() + "-" + d.getFullYear() + 
                                         " at " + d.getHours() + ":" + d.getMinutes() + `</div>
                                     </div>`;
+                document.getElementsByClassName("itp-text")[i].innerText = itps[i].interpretation;
                 // console.log(template.getElementsByClass("itp-text"));
             }
         }

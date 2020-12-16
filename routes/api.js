@@ -6,30 +6,34 @@ const Poem = require('../models/poem.js');
 const Interpretation = require('../models/interpretation.js');
 
 
-router.get('/poems', function(request, response, next){
+router.post('/poems/search', function(request, response, next){
+    console.log("Req body: "+request.body.verse);
+    var x = decodeURIComponent(request.query);
+    console.log(x);
+    console.log(Boolean(request.body.verse));
     var titleArr = [];
     var verseArr = [];
     var poetArr = [];
-    if(request.query.title) {
-        Poem.find({title: { '$regex' : request.query.title, '$options' : 'i' }}).then(function(poem){
+    if(request.body.title) {
+        Poem.find({title: { '$regex' : request.body.title, '$options' : 'i' }}).then(function(poem){
             titleArr = Array.from(poem);
         });
     }
-    if(request.query.verse) {
-        Poem.find({verse: { '$regex' : request.query.verse, '$options' : 'i' }}).then(function(poem){
+    if(request.body.verse) {
+        Poem.find({verse: { '$regex' : request.body.verse, '$options' : 'i' }}).then(function(poem){
             verseArr = Array.from(poem);
         });
     }
-    if(request.query.poet) {
-        Poem.find({poet: { '$regex' : request.query.poet, '$options' : 'i' }}).then(function(poem){
+    if(request.body.poet) {
+        Poem.find({poet: { '$regex' : request.body.poet, '$options' : 'i' }}).then(function(poem){
             poetArr = Array.from(poem);
 
-            // console.log("\nTitle:\n");
-            // console.log(titleArr);
-            // console.log("\nverse:\n");
-            // console.log(verseArr);
-            // console.log("\nPoet:\n");
-            // console.log(poetArr);
+            console.log("\nTitle:\n");
+            console.log(titleArr);
+            console.log("\nverse:\n");
+            console.log(verseArr);
+            console.log("\nPoet:\n");
+            console.log(poetArr);
 
             var resArr = Array.from(new Set(titleArr.concat(verseArr).concat(poetArr)));
             response.send(resArr);

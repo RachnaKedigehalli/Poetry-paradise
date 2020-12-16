@@ -23,7 +23,7 @@ body {
 	/*#669DB3FF*/
 	margin-bottom: 5%;
 }
-.container-home input[type=text] {
+.container-home input[type=text],.container-home textarea {
 	padding: 10px 15px;
 	margin:10px 0;
 	/*border: 2px solid #eee;*/
@@ -32,9 +32,7 @@ body {
 	width: 80%;
 	vertical-align: top;
 }
-.container-home input[type=text]::placeholder {
-	vertical-align: top;
-}
+
 #title-input {
 	height: 45px;
 }

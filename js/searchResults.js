@@ -16,6 +16,7 @@ function searchResults() {
                                                     <div class="result-verse">`+ poems[i].verse +`</div>
                                                     <div class="poem-id">`+ poems[i]._id +`</div>
                                                 </div>`;
+                document.getElementsByClassName("result-verse")[i].innerText = poems[i].verse;
             }
 
             var poems = document.getElementsByClassName("result");
@@ -35,7 +36,17 @@ function searchResults() {
     var title = url.searchParams.get("title");
     var verse = url.searchParams.get("verse");
     var poet = url.searchParams.get("poet");
-    http.open("GET", `http://localhost:4000/api/poems?title=${title}&verse=${verse}&poet=${poet}`, true);
-    http.send();
+    http.open("Post", `http://localhost:4000/api/poems/search?title=${title}&verse=${verse}&poet=${poet}`, true);
+    http.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    console.log(verse);
+    var obj = {};
+    obj.title = title;
+    obj.verse = verse;
+    obj.poet = poet;
+    // console.log(obj);
+    obj = JSON.stringify(obj);
+
+
+    http.send(obj);
 }
 
