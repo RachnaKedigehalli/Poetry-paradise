@@ -38,6 +38,9 @@ searchBtn.addEventListener("click", function(event) {
         url.searchParams.append('poet', poet.value);
         console.log(url);
         window.location.href = url;
+        title.value = "";
+        verse.title = "";
+        poet.value = "";
     }
     else {
         alert("Enter field to search");

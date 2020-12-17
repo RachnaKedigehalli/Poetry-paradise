@@ -5,30 +5,53 @@
 
 body {
 	text-align: center;
-	background-color: #555a60; /*#F0F6F7FF;*/
+	background-color: #f5f5f5; /*#F3DCD4;*//* #555a60;*/ /*#F0F6F7FF;*/
 	/*#f2bf7d*/
 	/*#F1F4FFFF*/
+
+	font-family: 'Gothic A1', sans-serif;
+    font-weight: 300;
 }
 
 .container-home {
 	display: inline-block;
 	text-align: center;
-	margin-top: 25vh;
+	margin-top: 20vh;
 }
 
 #website-name {
+	/*
 	font-family: 'Allura', cursive;
 	font-size: 475%;
 	color: #f2bf7d;
+	*/
 	/*#669DB3FF*/
-	margin-bottom: 5%;
+	font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    text-transform: uppercase;
+    font-size: 450%;
+    color: #2c394b;/* #000000;*/
+    margin-bottom: 5%;
+
+	position: relative;
+}
+.container-home hr {
+	
+	background-color: #F2A68D;
+	height: 8px;
+	border: 0;
+	width: 50%;
+	margin: auto;
+	position: absolute;
 }
 .container-home input[type=text],.container-home textarea {
 	padding: 10px 15px;
 	margin:10px 0;
-	/*border: 2px solid #eee;*/
+	/*border: 1px solid #F2A68D;*/
 	border: 0;
-	border-radius: 10px;
+	background-color: #e9ebed; /*#fdf6f3;*/
+	border-bottom: 4px solid #c4d0dc; /*#F2A68D;*/
+	border-radius: 2px;
 	width: 80%;
 	vertical-align: top;
 }
@@ -45,21 +68,38 @@ body {
 .container-home input, textarea {
   font-family: inherit;
   font-size: inherit;
+  outline: none;
 }
 
 .container-home button {
 	width: 25%;
 	font-size: 20px;
-	padding: 8px 0px;
-	border-radius: 5px;
-	background-color: #f2bf7d; 
-	color: #555a60;
+	padding: 15px 0px;
+	/*border-radius: 5px;*/
+	background-color: #f1a3a3; /*#000000;*/ /*#f2bf7d; */
+	color: #ffffff; /*#555a60;*/
 	border: none;
-}
 
+	font-family: 'Gothic A1', sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+
+    transition: background-color 0.3s ease-out;
+}
+.container-home button:hover {
+	cursor: pointer;
+	background-color: #2c394b;
+	/*color: #000000;*/
+
+	/*transform: perspective(1px) translateZ(0);*/
+    /*box-shadow: 0 0 5px rgba(0, 0, 0, 0);*/
+    
+}
 #search {
-	margin: 25px 20px 0px 0px;
+	margin: 30px 20px 0px 0px;
 }
 #add {
-	margin: 25px 0 0 20px;
+	margin: 30px 0 0 20px;
 }

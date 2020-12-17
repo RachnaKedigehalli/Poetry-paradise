@@ -60,7 +60,7 @@ router.post('/poems/search', function(request, response, next){
         for(var i=0; i<resArr.length; i++) {
             for(var j=i+1; j<resArr.length; j++) {
                 var arr = [i,j,String(resArr[i]._id)==String(resArr[j]._id)];
-                console.log(arr);
+                // console.log(arr);
                 if(String(resArr[i]._id)==String(resArr[j]._id)) {
                     resArr.splice(j,1);
                     j--;
@@ -84,93 +84,27 @@ router.get('/poems/:id', function(request, response, next){
     });
 });
 
-//-------------------------------------------------
-// substring search given name of poet
-router.get('/poems/:title/:verse/:poet_name', function(request, response, next){
-    console.log("reg test");
-    console.log(request.url);
-    console.log(request.params.poet_name);
-    console.log(request.params.title);
-    Poem.find({poet: { '$regex' : request.params.poet_name, '$options' : 'i' }}).then(function(poem){
-        console.log(poem);
-        response.send(poem);
-    });
-});
-
-router.get('/poems/title/:title', function(request, response, next){
-    console.log(request.params.title);
-    Poem.find({title: { '$regex' : request.params.title, '$options' : 'i' }}).then(function(poem){
-        console.log("Title---------");
-        console.log(poem);
-        response.send(poem);
-    });
-});
-router.get('/poems/poet/:poet_name', function(request, response, next){
-    console.log(request.params.poet_name);
-    Poem.find({poet: { '$regex' : request.params.poet_name, '$options' : 'i' }}).then(function(poem){
-        console.log("Poet---------");
-        console.log(poem);
-        response.send(poem);
-    });
-});
-router.get('/poems/verse/:verse', function(request, response, next){
-    console.log(request.params.verse);
-    Poem.find({verse: { '$regex' : request.params.verse, '$options' : 'i' }}).then(function(poem){
-        console.log("Verse---------");
-        console.log(poem);
-        response.send(poem);
-    });
-});
-//-------------------------------------------------
-
 // add poem to db
 router.post('/poems', function(request, response, next){
-    // var poem = new Poem(request.body);      // create Poem object using data sent in body of request
-    // poem.save();        // save to db
-
     // create Poem object and saves it to db
     Poem.create(request.body).then(function(poem){      // returns a promise; "poem" is the data saved in db
-        // console.log(poem);
         response.send(poem);
-    }).catch(next);     // goes to next middleware(in this case, error handling middleware)
+    }).catch(next);                                     // goes to next middleware(in this case, error handling middleware)
 });
 
 // add interpretation to poem db
 router.put('/poems/interpretations/:id', function(request, response, next){
     Poem.findOne({_id: request.params.id}).then(function(poem){
         const Itp = mongoose.model('interpretation', Interpretation);
-        // console.log("Request body\n" + request.body);
         var itp = new Itp(request.body);
-        // console.log("\nitp object \n"+ itp);
         var newObj = {};
         newObj.interpretations = poem.interpretations.concat(itp);
-        // console.log("\nPoem\n"+poem);
         Poem.findByIdAndUpdate({_id: request.params.id}, newObj).then(function(){
             Poem.findOne({_id: request.params.id}).then(function(poem){
-                console.log("\nPoem\n"+poem);
                 response.send(poem);
             });
         });
     });
-});
-
-
-// update poem details in db
-router.put('/poems/:id', function(request, response, next){
-    Poem.findByIdAndUpdate({_id: request.params.id}, request.body).then(function(){
-        Poem.findOne({_id: request.params.id}).then(function(poem){
-            response.send(poem);
-        });
-    });
-    // response.send({type: 'PUT'});
-});
-
-// delete poem from db
-router.delete('/poems/:id', function(request, response, next){
-    Poem.findByIdAndRemove({_id: request.params.id}).then(function(poem){
-        response.send(poem);
-    });
-    // response.send({type: 'DELETE'});
 });
 
 // export router so that it can be used in other files

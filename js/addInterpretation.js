@@ -17,6 +17,7 @@ submitBtn.addEventListener("click", function(event){
         if (this.readyState == 4 && this.status == 200) {
             var iptAdded = JSON.parse(this.responseText);
             console.log(iptAdded);
+            itp.value = "";
             displayPoem();
         }
     };

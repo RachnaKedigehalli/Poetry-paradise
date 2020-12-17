@@ -1,25 +1,52 @@
 #container {
-    width: 80%;
+    width: 75%;
+}
+#results-number {
+    font-size: 18px;
 }
 .result {
-    border-radius: 5px;
+    /*border-radius: 5px;
 	background-color: #ffffff;
-	border: 1px solid #555a60;
+	border: 1px solid #555a60;*/
 	min-height: 30px;
 	font-size: 25px;
-	margin: 10px 2px;
-	padding: 5px;
+	/*margin: 10px 2px;
+	padding: 5px;*/
+
+    padding: 10px 15px;
+    margin:15px 0;
+    /*border: 1px solid #F2A68D;*/
+    border: 0;
+    background-color: #e9ebed; /*#fdf6f3;*/
+    border-bottom: 4px solid #c4d0dc; /*#F2A68D;*/
+    border-radius: 2px;
+    vertical-align: top;
+    transition-property: transform, border-bottom;
+    transition-duration: 0.2s;
+    transition-timing-function: ease-out;
+    /*transition: transform,border-bottom 0.2s ease-out;*/
+}
+.result:hover {
+    cursor: pointer;
+    border-bottom: 4px solid #f1a3a3; /*#c4d0dc;*/ /*#F2A68D;*/
+    /*transition-duration: 1s;
+    transition-property: border-bottom;
+    transition: border-bottom 1s ease-out;*/
+    transform: translateY(-4px);
 }
 .result-poem-title {
     /* float: left; */
-    margin-right: 5px;
+    /*margin-right: 5px;*/
+    font-size: 27px;
+    font-family: 'Martel', serif;
+
 }
 .result-poet {
     font-size: 18px;
 }
 .result-verse {
-    /* clear: both; */
-    font-size: 22px;
+    margin-top: 5px;
+    font-size: 23px;
 }
 .poem-id {
     display: none;

@@ -1,22 +1,30 @@
 body {
 	/*background-color:  #fdf8f2;*/
 	/*background-color:  #ffffff;*/
-	background-color: #fcf2e5;
+	/*background-color: #fcf2e5;*/
 	font-family: 'Nunito', sans-serif;
 }
 
 nav {
-	height: 100px;
-	background-color: #555a60;
+	height: 120px;
+	background-color: #2c394b; /*#c4d0dc;*/ /*#555a60;*/
 
 	display: flex;
     justify-content: center;
     align-content: center;
     flex-direction: column;
+    padding: 0 5px;
+    width: 120px;
+    margin-bottom: 30px;
+    border-bottom-right-radius: 2px;
+    border-bottom-left-radius: 2px;
+	/*margin: auto;
+	margin-right: 20px;*/
 }
 
 #website-name {
-	font-size: 55px;
+	color: #c4d0dc;
+	font-size: 20px;
 	/*display: inline;*/
 	margin-bottom: 0;
 	float: left;
@@ -28,19 +36,22 @@ nav {
 }
 
 #container {
-	width: 70%;
+	width: 75%;
 	margin: auto;
 	text-align: left;
-	margin-top: 30px;
+	/*margin-top: 30px;*/
 }
 #poem-title {
 	font-size: 45px;
+	font-family: 'Martel', serif;
+    font-weight: 400;
 }
 #poet {
 	font-size: 20px;
 	/*margin-left: 5px;*/
 }
 #verse {
+	/*
 	border-radius: 5px;
 	background-color: #ffffff;
 	border: 1px solid #555a60;
@@ -48,13 +59,27 @@ nav {
 	font-size: 25px;
 	margin: 10px 2px;
 	padding: 5px;
+	*/
+
+	/*padding: 10px 15px;*/
+	padding: 10px 0;
+	margin:10px 0;
+	font-size: 25px;
+	/*border: 1px solid #F2A68D;*/
+	border: 0;
+	background-color: #f5f5f5; /*#e9ebed;*/ /*#fdf6f3;*/
+	border-bottom: 4px solid #2c394b; /*#c4d0dc;*/ /*#F2A68D;*/
+	border-radius: 2px;
+	/*width: 80%;*/
 }
 #poem-date {
 	font-size: 15px;
 }
 #interpretations-headings {
 	font-size: 35px;
-	margin-top: 20px;
+	margin-top: 25px;
+	font-family: 'Martel', serif;
+    font-weight: 400;
 }
 
 /* #interpretations {
@@ -62,15 +87,24 @@ nav {
 } */
 
 .interpretation {
-	border-radius: 5px;
-	background-color: #ffffff;
-	border: 1px solid #555a60;
+	/*border-radius: 5px;*/
+	/*background-color: #ffffff;*/
+	/*border: 1px solid #555a60;*/
 	min-height: 30px;
 	font-size: 23px;
-	margin: 10px 2px;
-	padding: 5px;
+	/*margin: 10px 2px;*/
+	/*padding: 5px;*/
 	position: relative;
 	height: auto;
+
+	padding: 10px 15px;
+	margin:15px 0;
+	/*border: 1px solid #F2A68D;*/
+	border: 0;
+	background-color: #e9ebed; /*#fdf6f3;*/
+	border-bottom: 4px solid #c4d0dc; /*#f1a3a3;*/ /*#F2A68D;*/
+	border-radius: 2px;
+	vertical-align: top;
 }
 .itp-text {
 	clear: both;
@@ -86,17 +120,56 @@ nav {
 	
 } */
 #enter-interpretation-text {
-	padding: 10px 15px;
+
+	/*padding: 10px 15px;
 	margin: 20px 5px 0 0;
 	border: 2px solid #000000;
-	/* border: 0; */
+	 border: 0; 
 	border-radius: 10px;
 	width: 85%;
 	height: 100px;
+	vertical-align: top;*/
+
+height: 100px;
+	font-size: 19px;
+	padding: 10px 15px;
+	margin-top: 15px;
+	/*border: 1px solid #F2A68D;*/
+	border: 0;
+	background-color: #e9ebed; /*#fdf6f3;*/
+	border-bottom: 4px solid #f1a3a3; /*#F2A68D;*/
+	border-radius: 2px;
+	width: 85%;
 	vertical-align: top;
+	margin-bottom: 40px;
 }
 
 #submit-button {
-	margin: 20px 0 0 5px;
-	width: 11%;
+	margin: 40px 0 0 15px;
+	width: 12%;
+
+	/*width: 25%;*/
+	font-size: 20px;
+	padding: 15px 0px;
+	/*border-radius: 5px;*/
+	background-color: #f1a3a3; /*#000000;*/ /*#f2bf7d; */
+	color: #ffffff; /*#555a60;*/
+	border: none;
+
+	font-family: 'Gothic A1', sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    outline: none;
+}
+
+#submit-button:hover {
+	cursor: pointer;
+	background-color: #2c394b;
+	/*color: #000000;*/
+	transform: perspective(1px) translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    transition-duration: 0.5s;
+    transition-property: color, background-color;
 }
