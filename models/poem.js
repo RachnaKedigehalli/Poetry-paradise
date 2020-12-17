@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const InterpretationSchema = require('./interpretation.js');
 
-// create poem Schema and model
+// creates poem Schema and model
 const PoemSchema = new Schema({
     title: {
         type: String,
@@ -30,5 +30,5 @@ const PoemSchema = new Schema({
 // creates collection of poems
 const Poem = mongoose.model('poem', PoemSchema);
 
-// export model so that it can be used in other files
+// exports model so that it can be used in other files
 module.exports = Poem;
